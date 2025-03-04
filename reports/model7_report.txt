@@ -1,0 +1,14 @@
+Train Accuracy: 0.0
+Validation Accuracy: 0.7941176295280457
+Train Loss: 0.0
+Validation Loss: 0.6719454526901245
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      Cancer       0.00      0.00      0.00        42
+  Non_cancer       0.79      1.00      0.89       162
+
+    accuracy                           0.79       204
+   macro avg       0.40      0.50      0.44       204
+weighted avg       0.63      0.79      0.70       204

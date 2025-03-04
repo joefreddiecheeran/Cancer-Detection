@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cancer Detection</h1>
+        <p>Upload an image to check for cancer</p>
+        <form id="upload-form" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+            <div class="upload-btn-wrapper">
+                <label class="upload-btn" for="file-input">Select Image</label>
+                <input type="file" name="file" id="file-input" accept="image/*" required>
+            </div>
+
+            <span id="file-name">No file selected</span>
+
+            <input type="submit" value="Upload and Predict" class="submit-btn">
+        </form>
+    </div>
+    <script>
+        document.getElementById('file-input').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file selected';
+            document.getElementById('file-name').textContent = fileName;
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            const fileInput = document.getElementById('file-input');
+            const filePath = fileInput.value;
+            const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; 
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Please upload a valid image file (jpg, jpeg, png).');
+                fileInput.value = ''; 
+                document.getElementById('file-name').textContent = 'No file selected';
+                event.preventDefault(); 
+            }
+        });
+    </script>
+</body>
+</html>
